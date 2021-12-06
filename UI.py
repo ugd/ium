@@ -33,7 +33,7 @@ class App:
         GLineEdit_87.place(x=450,y=80,width=110,height=337)
 
         GButton_14=tk.Button(root)
-        GButton_14["bg"] = "#780a0a"
+        GButton_14["bg"] = "#ff4a3d"
         GButton_14["cursor"] = "watch"
         ft = tkFont.Font(family='Times',size=10)
         GButton_14["font"] = ft
@@ -52,7 +52,7 @@ class App:
         GMessage_38.place(x=40,y=170,width=193,height=95)
 
         GButton_846=tk.Button(root)
-        GButton_846["bg"] = "#780a0a"
+        GButton_846["bg"] = "#ff4a3d"
         ft = tkFont.Font(family='Times',size=10)
         GButton_846["font"] = ft
         GButton_846["fg"] = "#000000"
