@@ -17,6 +17,7 @@ from speech_recognition import AudioData
 
 r = sr.Recognizer()
 
+
 def int_or_str(text):
     """Helper function for argument parsing."""
     try:
@@ -44,7 +45,7 @@ parser.add_argument(
     '-d', '--device', type=int_or_str,
     help='input device (numeric ID or substring)')
 parser.add_argument(
-    '-w', '--window', type=float, default=200, metavar='DURATION',
+    '-w', '--window', type=float, default=100, metavar='DURATION',
     help='visible time slot (default: %(default)s ms)')
 parser.add_argument(
     '-i', '--interval', type=float, default=30,
@@ -70,7 +71,6 @@ def audio_callback(indata, frames, time, status):
     # Fancy indexing with mapping creates a (necessary!) copy:
     q.put(indata[::args.downsample, mapping])
 
-
 def update_plot(frame):
     """This is called by matplotlib for each plot update.
 
@@ -82,21 +82,6 @@ def update_plot(frame):
     while True:
         try:
             data = q.get_nowait()
-
-            # with sr.Microphone() as source:
-            #     print('say something')
-            #     audio = r.listen(source)
-            #     print('sample width ', audio.sample_width)
-            #     print('frame data type ', type(audio.frame_data))  # type = bytes. need convert bytes-to-idk...list? FML
-            #     print('sample rate ', audio.sample_rate)
-            #     try:
-            #         voice_data = r.recognize_google(audio, language="en-US", show_all=False)
-            #     except:
-            #         print("except")
-            #         continue
-            #     print(voice_data)
-
-
         except queue.Empty:
             break
         shift = len(data)
@@ -121,8 +106,7 @@ try:
         ax.legend(['channel {}'.format(c) for c in args.channels],
                   loc='lower left', ncol=len(args.channels))
     ax.axis((0, len(plotdata), -1, 1))
-    ax.set_yticks([0])
-    ax.yaxis.grid(True)
+
     ax.tick_params(bottom=False, top=False, labelbottom=False,
                    right=False, left=False, labelleft=False)
     fig.tight_layout(pad=0)
