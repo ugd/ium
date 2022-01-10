@@ -336,8 +336,8 @@ class App:
         while True:
             with sr.Microphone() as source:
                 audio = r.listen(source)
-                audio_raw = audio.get_raw_data()
-                audio_data = np.frombuffer(audio_raw, np.int16)
+                # audio_raw = audio.get_raw_data()
+                # audio_data = np.frombuffer(audio_raw, np.int16)
 
                 # self.ax.plot(x, y)
                 try:
